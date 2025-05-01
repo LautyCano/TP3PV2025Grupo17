@@ -1,6 +1,17 @@
+Cano Lautaro  
+ https://www.google.com/url?q=https://github.com/LautyCano/TP01PV2025LautaroMatiasCano.git&sa=D&source=editors&ust=1746020893164010&usg=AOvVaw2-wZwX-r46ZaWo4xMBGhjK
+Segobia Tiago  
+ https://www.google.com/url?q=https://github.com/Dani444-S/TP01PV2025TiagoSegobia&sa=D&source=editors&ust=1746020893188684&usg=AOvVaw0E-WwAErBup5XWC5ryZ9Wl
+Fernandez Lucas 
+ https://www.google.com/url?q=https://github.com/peluk467/TP01PVS2025_Fernandez-Lucas.git&sa=D&source=editors&ust=1746020893174575&usg=AOvVaw3ihUaYmJuGU_StjzPuSLem
+Muro Lautaro 
+ https://www.google.com/url?q=https://github.com/Lautaro10L/TP01PV2025MUROLAUTARO.git&sa=D&source=editors&ust=1746020893179735&usg=AOvVaw0wZapORk5yuqm5Cg5Z4dwk
+Camino Lucas
+
+
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a minimal setup to get React working in Vite with HMR and some ESL int rules.
 
 Currently, two official plugins are available:
 
