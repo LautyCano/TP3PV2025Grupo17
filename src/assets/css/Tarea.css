@@ -32,7 +32,7 @@ form {
   }
 
   button[type="button"]:hover{
-    background-color: #ff0d00;
+    background-color: #ff0d00d7;
     color: white;
     cursor: pointer;
   }

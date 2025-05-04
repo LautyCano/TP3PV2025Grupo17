@@ -34,7 +34,7 @@ function Tarea() {
         );
         setTareas(tareasActualizadas);
     };
-    
+
     const eliminarTarea = (idAEliminar) => {
         const nuevasTareas = tareas.filter(tarea => tarea.id !== idAEliminar);
         setTareas(nuevasTareas);
@@ -44,7 +44,7 @@ function Tarea() {
     return (
         <div>
             <div className='Titulo'>
-                <h1>Agregar Nueva tareas</h1>
+                <h1>Agregar Nueva Tareas</h1>
             </div>
 
             <div>
