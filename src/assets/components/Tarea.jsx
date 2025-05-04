@@ -35,10 +35,16 @@ function Tarea() {
         setTareas(tareasActualizadas);
     };
 
+    const eliminarTarea = (idAEliminar) => {
+        const nuevasTareas = tareas.filter(tarea => tarea.id !== idAEliminar);
+        setTareas(nuevasTareas);
+        console.log("Tarea eliminada. Lista de tareas actualizada:", nuevasTareas);
+    };
+
     return (
         <div>
             <div className='Titulo'>
-                <h1>Agregar Nueva tareas</h1>
+                <h1>Agregar Nueva Tareas</h1>
             </div>
 
             <div>
@@ -87,7 +93,7 @@ function Tarea() {
                         <span style={{ textDecoration: tarea.realizada ? 'line-through' : 'none' }}>
                             {tarea.nombre} - {tarea.descripcion} - {tarea.fecha}
                         </span>
-
+                        <button type="button" onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
                         <button type="button" onClick={() => marcarComoRealizada(tarea.id)}> Realizada </button> 
                     </li>
                 ))}

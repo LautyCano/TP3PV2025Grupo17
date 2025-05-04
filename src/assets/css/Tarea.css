@@ -10,7 +10,7 @@ form {
     font-weight: bold;
   }
 
-  input, textarea, button {
+  input, button {
     width: 100%;
     max-width: 300px;
     padding: 8px;
@@ -22,13 +22,19 @@ form {
   }
 
   button[type="submit"] {
-    background-color: #007bff;
+    background-color: #333;;
     color: white;
     cursor: pointer;
   }
 
   button[type="submit"]:hover {
     background-color: #005fa3;
+  }
+
+  button[type="button"]:hover{
+    background-color: #ff0d00d7;
+    color: white;
+    cursor: pointer;
   }
   .tachado {
     text-decoration: line-through;
