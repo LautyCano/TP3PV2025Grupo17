@@ -1,42 +1,42 @@
 import '/src/assets/css/tarea.css';
 import { useState } from "react";
 
-
-
 function Tarea() {
-
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [fecha, setFecha] = useState("");
-
     const [tareas, setTareas] = useState([]);
 
-    let idContador = 0;
+    let idContador = tareas.length;
 
     const manejarEnvio = (e) => {
         e.preventDefault();
 
-            //Creacion de la Nueva Tarea
-            const nuevaTarea = {
-                id: ++idContador,
-                nombre,
-                descripcion,
-                fecha
-            };
+        const nuevaTarea = {
+            id: ++idContador,
+            nombre,
+            descripcion,
+            fecha,
+            realizada: false
+        };
 
-            //se agrega nueva tarea al Arreglo
-            setTareas([...tareas, nuevaTarea]);
-            console.log("Lista de tareas actualizada:",[...tareas, nuevaTarea]);
+        setTareas([...tareas, nuevaTarea]);
+        console.log("Lista de tareas actualizada:", [...tareas, nuevaTarea]);
 
-            //limpia el Formulario
-            setNombre("");
-            setDescripcion("");
-            setFecha("");
+        setNombre("");
+        setDescripcion("");
+        setFecha("");
+    };
+
+    const marcarComoRealizada = (id) => {
+        const tareasActualizadas = tareas.map(tarea =>
+            tarea.id === id ? { ...tarea, realizada: true } : tarea
+        );
+        setTareas(tareasActualizadas);
     };
 
     return (
         <div>
-           
             <div className='Titulo'>
                 <h1>Agregar Nueva tareas</h1>
             </div>
@@ -45,44 +45,55 @@ function Tarea() {
                 <form onSubmit={manejarEnvio}>
                     <div className='Nombre'>
                         <label>Nombre de la Tarea:</label>
-                        <input 
-                        type="text" id="nombre" name="nombre" 
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)} 
-                        required/>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            required />
                     </div>
-                    
+
                     <div className='Descrip'>
                         <label>Descripción:</label>
-                        <input 
-                        type="text" id="descripcion" name="descripcion"
-                        value={descripcion}
-                        onChange={(e) => setDescripcion(e.target.value)}
-                        required/>
+                        <input
+                            type="text"
+                            id="descripcion"
+                            name="descripcion"
+                            value={descripcion}
+                            onChange={(e) => setDescripcion(e.target.value)}
+                            required />
                     </div>
-                    
+
                     <div className='Limite'>
-                        <label >Fecha límite:</label>
-                        <input 
-                        type="date" id="fecha" name="fecha" 
-                        value={fecha}
-                        onChange={(e) => setFecha(e.target.value)}
-                        required/>
+                        <label>Fecha límite:</label>
+                        <input
+                            type="date"
+                            id="fecha"
+                            name="fecha"
+                            value={fecha}
+                            onChange={(e) => setFecha(e.target.value)}
+                            required />
                     </div>
 
                     <button type="submit">Guardar Tarea</button>
                 </form>
             </div>
-                <h3>Listado Tarea</h3>
-                <ul>
-                    {tareas.map((tarea) => (
-                        <li key={tarea.id}>
-                            <span>{tarea.nombre}</span> - <span>{tarea.descripcion}</span> - <span>{tarea.fecha}</span>
-                        </li>
-                    ))}
-                </ul>
+
+            <h3>Listado Tarea</h3>
+            <ul>
+                {tareas.map((tarea) => (
+                    <li key={tarea.id}>
+                        <span style={{ textDecoration: tarea.realizada ? 'line-through' : 'none' }}>
+                            {tarea.nombre} - {tarea.descripcion} - {tarea.fecha}
+                        </span>
+
+                        <button type="button" onClick={() => marcarComoRealizada(tarea.id)}> Realizada </button> 
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-export default Tarea
+export default Tarea;
