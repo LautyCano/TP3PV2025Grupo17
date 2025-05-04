@@ -30,3 +30,8 @@ form {
   button[type="submit"]:hover {
     background-color: #005fa3;
   }
+  .tachado {
+    text-decoration: line-through;
+    color: gray;
+  }
+ 
