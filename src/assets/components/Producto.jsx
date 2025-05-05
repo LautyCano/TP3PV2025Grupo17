@@ -8,7 +8,7 @@ function Producto() {
         { descripcion: "Monitor", precio: 85000 },
         { descripcion: "Auriculares", precio: 49000 },
         { descripcion: "Webcam", precio: 22000 },
-        { descripcion: "Caramelos", precio: 10 }
+        { descripcion: "caramelos", precio: 10 }
     ]);
 
     productos.forEach(p => {
