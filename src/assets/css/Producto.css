@@ -1,0 +1,18 @@
+.contenedor {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #252424;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.lista {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.lista li {
+    padding: 10px;
+    border-bottom: 1px solid #3d3b3b;
+}
