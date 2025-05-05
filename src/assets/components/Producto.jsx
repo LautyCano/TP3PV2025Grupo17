@@ -11,17 +11,22 @@ function Producto() {
         { descripcion: "caramelos", precio: 10 }
     ]);
 
+   
     productos.forEach(p => {
         console.log(`Producto: ${p.descripcion} - Precio: $${p.precio}`);
     });
 
+ 
     const productosFiltrados = productos.filter(p => p.precio > 20);
     console.log("Productos con precio mayor a $20:", productosFiltrados);
+
+    const precioMinimo = Math.min(...productos.map(p => p.precio));
+    const productosSinMasBarato = productos.filter(p => p.precio !== precioMinimo);
+    console.log("Productos sin el más barato:", productosSinMasBarato);
 
     return (
         <div className="contenedor">
             <h1>Listado de Productos</h1>
-
             <ul className="lista">
                 {productos.map((p, i) => (
                     <li key={i}>
@@ -33,6 +38,15 @@ function Producto() {
             <h2>Productos filtrados (mayor a $20)</h2>
             <ul className="lista">
                 {productosFiltrados.map((p, i) => (
+                    <li key={i}>
+                        {p.descripcion} - ${p.precio.toLocaleString()}
+                    </li>
+                ))}
+            </ul>
+
+            <h2>Productos sin el más barato</h2>
+            <ul className="lista">
+                {productosSinMasBarato.map((p, i) => (
                     <li key={i}>
                         {p.descripcion} - ${p.precio.toLocaleString()}
                     </li>
