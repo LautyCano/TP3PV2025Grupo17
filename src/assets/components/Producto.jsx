@@ -1,60 +1,73 @@
+import { useState } from "react";
 import '../css/producto.css';
-import { useState } from 'react';
 
 function Producto() {
-    const [productos] = useState([
-        { descripcion: "Teclado", precio: 30000 },
-        { descripcion: "Mouse", precio: 15000 },
-        { descripcion: "Monitor", precio: 85000 },
-        { descripcion: "Auriculares", precio: 49000 },
-        { descripcion: "Webcam", precio: 22000 },
-        { descripcion: "caramelos", precio: 10 }
-    ]);
+    const [productos, setProductos] = useState([]);
+    const [nombre, setNombre] = useState("");
+    const [precio, setPrecio] = useState("");
+    const [mostrarIVA, setMostrarIVA] = useState(false);
 
-   
-    productos.forEach(p => {
-        console.log(`Producto: ${p.descripcion} - Precio: $${p.precio}`);
-    });
+    const manejarFormulario = () => {
+        if (!nombre || !precio) return;
 
- 
-    const productosFiltrados = productos.filter(p => p.precio > 20);
-    console.log("Productos con precio mayor a $20:", productosFiltrados);
+        const nuevoProducto = {
+            id: productos.length + 1,
+            nproducto: nombre,
+            precio: parseFloat(precio)
+        };
 
-    const precioMinimo = Math.min(...productos.map(p => p.precio));
-    const productosSinMasBarato = productos.filter(p => p.precio !== precioMinimo);
-    console.log("Productos sin el más barato:", productosSinMasBarato);
+        setProductos([...productos, nuevoProducto]);
+        setNombre("");
+        setPrecio("");
+        setMostrarIVA(false);
+    };
+
+    const productosAMostrar = mostrarIVA
+        ? productos.map(p => ({
+              ...p,
+              precio: (p.precio * 1.21).toFixed(2)
+          }))
+        : productos;
 
     return (
-        <div className="contenedor">
-            <h1>Listado de Productos</h1>
-            <ul className="lista">
-                {productos.map((p, i) => (
-                    <li key={i}>
-                        {p.descripcion} - ${p.precio.toLocaleString()}
-                    </li>
+        <>
+            <div className="Titulo">
+                <h1>Agregar Productos</h1>
+            </div>
+
+            <div>
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <label>Producto:</label>
+                    <input
+                        type="text"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+
+                    <label>Precio:</label>
+                    <input
+                        type="number"
+                        value={precio}
+                        onChange={(e) => setPrecio(e.target.value)}
+                    />
+
+                    <button type="button" onClick={manejarFormulario}>
+                        Guardar Producto
+                    </button>
+                </form>
+            </div>
+
+            <h3>Listado de Productos</h3>
+            <ul>
+                {productosAMostrar.map((p) => (
+                    <li key={p.id}>{p.nproducto} - ${p.precio}</li>
                 ))}
             </ul>
 
-            <h2>Productos filtrados (mayor a $20)</h2>
-            <ul className="lista">
-                {productosFiltrados.map((p, i) => (
-                    <li key={i}>
-                        {p.descripcion} - ${p.precio.toLocaleString()}
-                    </li>
-                ))}
-            </ul>
-
-            <h2>Productos sin el más barato</h2>
-            <ul className="lista">
-                {productosSinMasBarato.map((p, i) => (
-                    <li key={i}>
-                        {p.descripcion} - ${p.precio.toLocaleString()}
-                    </li>
-                ))}
-            </ul>
-
-            <p>Los productos también se muestran en consola.</p>
-        </div>
+            <button type="button" onClick={() => setMostrarIVA(true)}>
+                Mostrar con IVA
+            </button>
+        </>
     );
 }
 
