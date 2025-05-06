@@ -2,7 +2,17 @@ import { useState } from "react";
 import '../css/producto.css';
 
 function Producto() {
-    const [productos, setProductos] = useState([]);
+
+    const [productos, setProductos] = useState(() => {
+        return [
+            {
+            id: 1,
+            nproducto: "Monitor",
+            precio: 38000.99
+            }
+        ];
+    });
+
     const [nombre, setNombre] = useState("");
     const [precio, setPrecio] = useState("");
     const [mostrarIVA, setMostrarIVA] = useState(false);
@@ -16,7 +26,7 @@ function Producto() {
             precio: parseFloat(precio)
         };
 
-        setProductos([...productos, nuevoProducto]);
+        setProductos([nuevoProducto, ...productos]);
         setNombre("");
         setPrecio("");
         setMostrarIVA(false);
