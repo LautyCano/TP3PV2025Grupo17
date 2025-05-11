@@ -1,43 +1,32 @@
-import { useState } from "react";
 import '../css/producto.css';
+import React from 'react';
+
+let idContador = 0;
+const productos = [];
 
 function Producto() {
+    const manejarFormulario = (evento) => {
+        evento.preventDefault();
 
-    const [productos, setProductos] = useState(() => {
-        return [
-            {
-            id: 1,
-            nproducto: "Monitor",
-            precio: 38000.99
-            }
-        ];
-    });
-
-    const [nombre, setNombre] = useState("");
-    const [precio, setPrecio] = useState("");
-    const [mostrarIVA, setMostrarIVA] = useState(false);
-
-    const manejarFormulario = () => {
-        if (!nombre || !precio) return;
+        const nombre = document.getElementById("produc").value;
+        const precio = document.getElementById("precio").value;
 
         const nuevoProducto = {
-            id: productos.length + 1,
-            nproducto: nombre,
-            precio: parseFloat(precio)
+            id: ++idContador,
+            nombre,
+            precio,
         };
 
-        setProductos([nuevoProducto, ...productos]);
-        setNombre("");
-        setPrecio("");
-        setMostrarIVA(false);
-    };
+        productos.push(nuevoProducto);
+        console.log("Lista de productos actualizada:", productos);
 
-    const productosAMostrar = mostrarIVA
-        ? productos.map(p => ({
-              ...p,
-              precio: (p.precio * 1.21).toFixed(2)
-          }))
-        : productos;
+        const lista = document.getElementById('lista-productos');
+        if (lista) {
+            const item = document.createElement('li');
+            item.textContent = `Producto: ${nuevoProducto.nombre} - ${nuevoProducto.precio}`;
+            lista.appendChild(item);
+        }
+    };
 
     return (
         <>
@@ -46,37 +35,25 @@ function Producto() {
             </div>
 
             <div>
-                <form onSubmit={(e) => e.preventDefault()}>
+                <form onSubmit={manejarFormulario} >
                     <label>Producto:</label>
-                    <input
-                        type="text"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                    />
+                    <input type="text" id="produc" name="produc" />
 
                     <label>Precio:</label>
-                    <input
-                        type="number"
-                        value={precio}
-                        onChange={(e) => setPrecio(e.target.value)}
-                    />
+                    <input type="number" id="precio" name="precio" />
 
-                    <button type="button" onClick={manejarFormulario}>
-                        Guardar Producto
-                    </button>
+                    <button type="submit">Registrar Producto</button>
                 </form>
             </div>
 
             <h3>Listado de Productos</h3>
-            <ul>
-                {productosAMostrar.map((p) => (
-                    <li key={p.id}>{p.nproducto} - ${p.precio}</li>
+            <ul id="lista-productos">
+                {productos.map((producto) => (
+                    <li key={producto.id}>
+                        {producto.nombre} - {producto.precio}
+                    </li>
                 ))}
             </ul>
-
-            <button type="button" onClick={() => setMostrarIVA(true)}>
-                Mostrar con IVA
-            </button>
         </>
     );
 }

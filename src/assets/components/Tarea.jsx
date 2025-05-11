@@ -1,13 +1,15 @@
 import '/src/assets/css/tarea.css';
 import { useState } from "react";
 
+let idContador = 0;
+
 function Tarea() {
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [fecha, setFecha] = useState("");
     const [tareas, setTareas] = useState([]);
 
-    let idContador = tareas.length;
+    
 
     const manejarEnvio = (e) => {
         e.preventDefault();
