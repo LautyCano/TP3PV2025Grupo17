@@ -7,7 +7,6 @@ function Producto() {
     const [listaProductos, setListaProductos] = useState([]);
     const [idActual, setIdActual] = useState(1);
 
-
     function agregarProducto(e) {
         e.preventDefault();
 
