@@ -1,20 +1,18 @@
 .contenedor {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 16px;
-  background-color: #2c2c2c;
-  color: white;
-  border-radius: 8px;
-  font-family: sans-serif;
-  
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #252424;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
 }
 
 .lista {
-  padding: 0;
-  list-style: none;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .lista li {
-  padding: 8px;
-  border-bottom: 1px solid #444;
+    padding: 10px;
+    border-bottom: 1px solid #3d3b3b;
 }
